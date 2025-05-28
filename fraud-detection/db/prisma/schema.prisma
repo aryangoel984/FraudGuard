@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String       @id @default(uuid()) 
+  email          String       @unique
+  name           String
+  password       String
+  phoneNumber    String       @unique
+  avgTransaction Float        @default(0)
+  lastLocation   String?
+  trustedDevices String[]
+  createdAt      DateTime     @default(now())
+  
+  transactions   Transaction[]
+}
+
+model Transaction {
+  id                      String   @id @default(uuid()) 
+  transaction_date        DateTime 
+  transaction_amount      Float
+  transaction_channel     String   // Web, mobile, etc.
+  transaction_payment_mode String   // Card, UPI, NEFT
+  payment_gateway_bank    String   // Service bank
+  payer_email            String
+  payer_mobile           String
+  payer_card_brand       String   // Visa, Mastercard, etc.
+  payer_device           String   // Device ID
+  payer_browser          String   // Web browser
+  payee_id               String   // Unique payee ID
+  status                 TransactionStatus @default(PENDING) 
+  createdAt              DateTime @default(now())
+
+  userId                 String
+  user                   User      @relation(fields: [userId], references: [id])
+
+  flaggedBy              FraudAlert?
+}
+
+model FraudRule {
+  id          String       @id @default(uuid())
+  ruleName    String       @unique
+  description String
+  threshold   Float?  
+  condition   String  
+  action      FraudAction
+  createdAt   DateTime     @default(now())
+
+  alerts      FraudAlert[]
+}
+
+model FraudAlert {
+  id            String       @id @default(uuid())
+  transactionId String       @unique
+  transaction   Transaction  @relation(fields: [transactionId], references: [id])
+  ruleId        String
+  rule          FraudRule    @relation(fields: [ruleId], references: [id])
+  reason        String
+  createdAt     DateTime     @default(now())
+}
+
+enum TransactionStatus {
+  PENDING
+  APPROVED
+  FLAGGED
+  BLOCKED
+}
+
+enum FraudAction {
+  REVIEW
+  BLOCK
+  OTP_VERIFICATION
+}
