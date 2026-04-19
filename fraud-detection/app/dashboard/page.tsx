@@ -44,7 +44,7 @@ export default function DashboardPage() {
           <TabsTrigger value="evaluation">Model Evaluation</TabsTrigger>
         </TabsList>
         <TabsContent value="overview" className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">DashboardPage
             <Card className="col-span-4">
               <CardHeader>
                 <CardTitle>Fraud Detection Trend</CardTitle>

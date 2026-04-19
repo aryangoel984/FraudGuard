@@ -14,7 +14,7 @@ df = pd.read_csv('data/transactions_train.csv')
 
 print("📊 Columns in dataset:", df.columns.tolist())
 
-# Rename columns (mapping your dataset to standard names)
+# Rename columns (mapping  dataset to standard names)
 column_mapping = {
     'transaction_payment_mode_anonymous': 'transaction_payment_mode',
     'payment_gateway_bank_anonymous': 'payment_gateway_bank',

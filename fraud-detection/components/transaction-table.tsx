@@ -64,7 +64,7 @@ export function TransactionTable({ searchQuery, dateRange }: TransactionTablePro
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const [setSearchQuery] = useState<string>("")
+  const [localSearchQuery, setLocalSearchQuery] = useState<string>(searchQuery)
 
   // Filter state
   const [filters, setFilters] = useState({
@@ -416,8 +416,8 @@ export function TransactionTable({ searchQuery, dateRange }: TransactionTablePro
         <div className="flex flex-1 items-center space-x-2">
           <Input
             placeholder="Search transactions..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={localSearchQuery || searchQuery}
+            onChange={(e) => setLocalSearchQuery(e.target.value)}
             className="h-8 w-[150px] lg:w-[250px]"
           />
           <Dialog open={isFilterOpen} onOpenChange={setIsFilterOpen}>

@@ -112,7 +112,7 @@ export function FraudTimeSeries() {
     document.body.removeChild(link)
   }
 
-  const chartOptions: ChartOptions<"line" | "bar"> = {
+  const chartOptions: any = {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
