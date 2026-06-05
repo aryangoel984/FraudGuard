@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { AlertCircle, ArrowRight, CheckCircle, Copy, RefreshCw } from "lucide-react"
 import { format } from "date-fns"
+import { API_URL } from "@/lib/api-config"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -68,7 +69,7 @@ export function RealTimeFraudDetectionForm() {
         transaction_amount: Number(formData.transaction_amount),
       }
 
-      const response = await fetch("/api/fraud/detect", {
+      const response = await fetch(`${API_URL}/api/fraud/detect`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

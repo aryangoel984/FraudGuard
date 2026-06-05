@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { ArrowRight, CheckCircle, Copy, RefreshCw } from "lucide-react"
+import { API_URL } from "@/lib/api-config"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -39,7 +40,7 @@ export function FraudReportingForm() {
     setResponse(null)
 
     try {
-      const response = await fetch("/api/fraud/report", {
+      const response = await fetch(`${API_URL}/api/fraud/report`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

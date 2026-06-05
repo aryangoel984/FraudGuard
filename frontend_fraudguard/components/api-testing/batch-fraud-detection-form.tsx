@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { AlertCircle, ArrowRight, CheckCircle, Copy, Plus, RefreshCw, Trash2 } from "lucide-react"
 import { format } from "date-fns"
+import { API_URL } from "@/lib/api-config"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -134,7 +135,7 @@ export function BatchFraudDetectionForm() {
         }
       }
 
-      const response = await fetch("/api/fraud/detect/batch", {
+      const response = await fetch(`${API_URL}/api/fraud/detect/batch`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

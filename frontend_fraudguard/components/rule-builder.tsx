@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown, Edit, Grip, Info, MoreHorizontal, Plus, Save, Trash2 } from "lucide-react"
+import { API_URL } from "@/lib/api-config"
 
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -48,7 +49,7 @@ export function RuleBuilder({ ruleType, initialRules }: RuleBuilderProps) {
 
     // Save to backend
     try {
-      const response = await fetch(`/api/rules/${id}/toggle`, {
+      const response = await fetch(`${API_URL}/api/rules/${id}/toggle`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ active: updatedRules.find((r) => r.id === id)?.active }),
@@ -84,7 +85,7 @@ export function RuleBuilder({ ruleType, initialRules }: RuleBuilderProps) {
 
       if (!ruleToUpdate) return
 
-      const response = await fetch(`/api/rules/${id}`, {
+      const response = await fetch(`${API_URL}/api/rules/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ruleToUpdate),
@@ -136,7 +137,7 @@ export function RuleBuilder({ ruleType, initialRules }: RuleBuilderProps) {
         ruleType,
       }
 
-      const response = await fetch("/api/rules", {
+      const response = await fetch(`${API_URL}/api/rules`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ruleToAdd),
@@ -168,7 +169,7 @@ export function RuleBuilder({ ruleType, initialRules }: RuleBuilderProps) {
 
   const handleDeleteRule = async (id: string) => {
     try {
-      const response = await fetch(`/api/rules/${id}`, {
+      const response = await fetch(`${API_URL}/api/rules/${id}`, {
         method: "DELETE",
       })
 
