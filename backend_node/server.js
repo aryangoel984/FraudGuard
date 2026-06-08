@@ -7,6 +7,7 @@ const port = process.env.PORT || 3001;
 const prisma = new PrismaClient();
 
 app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 
 // Helper to map ruleType and action
