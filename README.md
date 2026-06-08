@@ -1,7 +1,7 @@
 # FraudGuard — Fraud Detection, Alert & Monitoring System
 ### Execute 4.0 Hackathon · SabPaisa · **Winning Project**
 
-**Live Demo:** [execute-4-0.vercel.app](https://execute-4-0.vercel.app)
+**Live Demo:** [fraudguard-pearl.vercel.app/](https://fraudguard-pearl.vercel.app/)
 
 ---
 
