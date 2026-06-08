@@ -534,6 +534,10 @@ app.get('/', (req, res) => {
   res.json({ message: "FraudGuard Node.js API Service Running ✅", port });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
+
+export default app;
